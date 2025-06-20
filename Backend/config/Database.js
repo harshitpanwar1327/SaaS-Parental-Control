@@ -9,17 +9,17 @@ const pool = createPool({
     password: process.env.DB_PASS,
     database: process.env.DB_NAME,
     connectionLimit: 10,
-    queueLimit: 0,
+    queueLimit: 5,
     waitForConnections: true
 });
 
 const checkConnection = async ()=>{
     try {
         const connection = await pool.getConnection();
-        console.log("Database created");
+        console.log("Database connected successfully");
         connection.release();
     } catch (error) {
-        console.log("something went wrong",error);
+        console.log("Connection failed with error: ", error);
     }
 };
 

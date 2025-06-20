@@ -1,8 +1,8 @@
 import dotenv from 'dotenv'
 import express from 'express'
 import cors from 'cors'
-import createAllTables from './utils/CreateTables.js';
-import { checkConnection } from './config/Database.js';
+import createAllTables from './utils/CreateTables.js'
+import { checkConnection } from './config/Database.js'
 
 dotenv.config();
 
@@ -13,11 +13,11 @@ app.use(cors());
 app.use(express.json());
 
 app.listen(PORT, async ()=>{
-    console.log(`Port ${PORT} is listening`);
+    console.log(`Listening on port: ${PORT}`);
     try {
         await checkConnection();
         await createAllTables();
     } catch (error) {
-        console.log("something went wrong",error);
+        console.log("Something went wrong!", error);
     }
 });
