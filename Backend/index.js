@@ -3,6 +3,7 @@ import express from 'express'
 import cors from 'cors'
 import createAllTables from './utils/CreateTables.js'
 import { checkConnection } from './config/Database.js'
+import UsersRoutes from './routes/UsersRoutes.js'
 
 dotenv.config();
 
@@ -11,6 +12,7 @@ let PORT = process.env.PORT || 8080;
 
 app.use(cors());
 app.use(express.json());
+app.use('/api/auth',UsersRoutes);
 
 app.listen(PORT, async ()=>{
     console.log(`Listening on port: ${PORT}`);
