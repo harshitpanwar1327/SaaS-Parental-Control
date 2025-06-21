@@ -1,6 +1,7 @@
 export class UsersModels {
-    constructor(user) {
-        this.email = usersData.email;
-        this.password = usersData.password;
+    constructor(userData) {
+        this.name = userData.name;
+        this.email = userData.email;
+        this.password = userData.password;
     }
 }

@@ -1,17 +1,15 @@
-import bcryptjs from 'bcryptjs'
+import bcrypt from 'bcryptjs'
 import { pool } from '../config/Database.js';
 
-export const registerUser = async(user)=>{
-    console.log(user);
-
+export const registerUserLogic = async (userData) => {
     try {
-        const hashedPassword = await bcrypt.hash(user.password,10);
-        const query = `INSERT INTO users (email,password) VALUES (?,?)`;
-        const values = [user.email, hashedPassword];
+        const hashedPassword = await bcrypt.hash(userData.password, 10);
+        const query = `INSERT INTO users (name, email, password) VALUES (?, ?, ?)`;
+        const values = [userData.name, userData.email, hashedPassword];
+        await pool.query(query, values);
 
-        await pool.query(query,values);
-        return {success:true,message:"User registered"};
+        return {success: true, message: "User registered successfully"};
     } catch (error) {
-        return {success:false,message:"Registration failed"};
+        return {success: false, message: "Registration failed!"};
     }
 }
