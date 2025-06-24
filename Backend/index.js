@@ -15,7 +15,7 @@ let PORT = process.env.PORT || 8080;
 app.use(cors());
 app.use(express.json());
 
-app.use('/api/auth', UsersRoutes);
+app.use('/api/users', UsersRoutes);
 
 app.use('/api/plans', PlansRoutes);
 
