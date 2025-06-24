@@ -13,14 +13,13 @@ export const registerUser = async (req, res) => {
 
     try {
         const response = await registerUserLogic(userData);
-        if(response.success){
+        if(response.success) {
             return res.status(200).json(response);
-        }else{
+        }else {
             return res.status(400).json(response);
         }
     } catch (error) {
         console.log(error);
-        
         return res.status(500).json({success: false, message: "Internal Server Error!"});
     }
 }
@@ -30,14 +29,16 @@ export const loginUser = async(req,res)=>{
     const {email, password} = req.body;
 
     if(!email || !password){
-        return res.status(400).json({success: false, message: "All fields are required!"});
+        return res.status(400).json({success: false, message: "Fill all the required fields!"});
     }
 
+    const userData = new UsersModels({email, password});
+
     try {
-        const response = await loginUserLogic(email,password);
-        if(response.success){
+        const response = await loginUserLogic(userData);
+        if(response.success) {
             return res.status(200).json(response);
-        }else{
+        }else {
             return res.status(400).json(response);
         }
     } catch (error) {

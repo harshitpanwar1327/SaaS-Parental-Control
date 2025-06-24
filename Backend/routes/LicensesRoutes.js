@@ -3,7 +3,7 @@ import express from 'express'
 
 let router = express.Router();
 
-router.get('/get-licenses',getLicense);
-router.post('/generate-license',generateLicense);
+router.get('/get-licenses/:id', getLicense);
+router.post('/generate-license', generateLicense);
 
 export default router;
