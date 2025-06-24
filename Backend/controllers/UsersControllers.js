@@ -1,13 +1,14 @@
 import { UsersModels } from "../models/UsersModels.js";
-import { registerUserLogic } from "../services/UsersServices.js";
+import { registerUserLogic, loginUserLogic } from "../services/UsersServices.js";
 
 export const registerUser = async (req, res) => {
     const {name, email, password} = req.body;
 
+
     if(!email || !password){
         return res.status(400).json({success: false, message: "Fill all the required fields!"});
     }
-
+    
     const userData = new UsersModels({name, email, password});
 
     try {
@@ -18,6 +19,29 @@ export const registerUser = async (req, res) => {
             return res.status(400).json(response);
         }
     } catch (error) {
+        console.log(error);
+        
+        return res.status(500).json({success: false, message: "Internal Server Error!"});
+    }
+}
+
+
+export const loginUser = async(req,res)=>{
+    const {email, password} = req.body;
+
+    if(!email || !password){
+        return res.status(400).json({success: false, message: "All fields are required!"});
+    }
+
+    try {
+        const response = await loginUserLogic(email,password);
+        if(response.success){
+            return res.status(200).json(response);
+        }else{
+            return res.status(400).json(response);
+        }
+    } catch (error) {
+        console.log(error);
         return res.status(500).json({success: false, message: "Internal Server Error!"});
     }
 }
