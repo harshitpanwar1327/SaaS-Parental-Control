@@ -20,7 +20,7 @@ const licenses = `CREATE TABLE IF NOT EXISTS licenses(
     licenseId INT AUTO_INCREMENT PRIMARY KEY,
     userId INT NOT NULL,
     planId INT NOT NULL,
-    license_key VARCHAR(64) UNIQUE NOT NULL,
+    license_key VARCHAR(36) UNIQUE NOT NULL,
     is_active BOOLEAN NOT NULL,
     activated_at DATETIME,
     expired_at DATETIME,
@@ -34,7 +34,6 @@ const downloads = `CREATE TABLE IF NOT EXISTS downloads(
     userId INT,
     licenseId INT,
     version VARCHAR(20),
-    file_url TEXT,
     downloaded_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (userId) REFERENCES users(id)
         ON DELETE CASCADE

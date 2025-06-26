@@ -1,6 +1,6 @@
 import './App.css'
 import Login from  './pages/authentication/Login.jsx'
-import SignUp from './pages/authentication/SignUp.jsx'
+import Signup from './pages/authentication/Signup.jsx'
 import ForgotPassword from './pages/authentication/ForgotPassword.jsx'
 import HomePage from './pages/main/HomePage.jsx'
 import Features from './pages/main/Features.jsx'
@@ -18,7 +18,7 @@ function App() {
         <Route path='/' element={<Login />}/>
         <Route path='/login' element={<Login />}/>
         <Route path='/forgot-password' element={<ForgotPassword />}/>
-        <Route path='/sign-up' element={<SignUp />}/>
+        <Route path='/signup' element={<Signup />}/>
       
         <Route path='/home-page' element={<HomePage />} />
         <Route path='/about-us' element={<AboutUs />} />
